@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ultimate Weather App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+
+    <h1>Ultimate Weather App</h1>
+
+    <!-- Search Box -->
+    <div class="search-box">
+      <input type="text" id="cityInput" placeholder="Enter city name">
+      <button id="getWeather">Get Weather</button>
+    </div>
+
+    <!-- Loader -->
+    <div id="loader" class="loader" hidden></div>
+
+    <!-- Weather Result -->
+    <div id="resultSection" hidden>
+      <div class="location">
+        <span id="displayCity"></span><span id="displayCountry"></span>
+      </div>
+
+      <div class="weather-main">
+        <div id="weatherIcon"></div>
+        <div>
+          <div class="temp" id="displayTemp"></div>
+          <div class="condition" id="displayCondition"></div>
+        </div>
+      </div>
+
+      <div class="weather-details">
+        <div class="detail-box">Humidity: <span id="displayHumidity"></span></div>
+        <div class="detail-box">Wind Speed: <span id="displayWindSpeed"></span></div>
+        <div class="detail-box">Local Time: <span id="displayLocalTime"></span></div>
+      </div>
+    </div>
+
+    <!-- History Section -->
+    <div class="history-section">
+      <h2>Search History</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>City</th>
+            <th>Temperature</th>
+            <th>Condition</th>
+            <th>Local Time</th>
+          </tr>
+        </thead>
+        <tbody id="historyTableBody"></tbody>
+      </table>
+    </div>
+
+</div>
+
+<!-- Floating Footer -->
+<div class="footer-fixed">
+  &copy; Mohib Sheikh 2026. All rights reserved.
+</div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+:root {
+  --bg-gradient: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  --glass-light: rgba(255, 255, 255, 0.12);
+  --glass-dark: rgba(0, 0, 0, 0.35);
+  --accent-primary: #00c6ff;
+  --accent-secondary: #0072ff;
+  --text-main: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.75);
+  --text-soft: rgba(255, 255, 255, 0.55);
+
+  --font-main: "Segoe UI", system-ui, sans-serif;
+  --font-large: 3.4rem;
+  --font-medium: 1.6rem;
+  --font-small: 0.95rem;
+
+  --radius-xl: 28px;
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --shadow-soft: 0 12px 32px rgba(0, 0, 0, 0.35);
+  --shadow-deep: 0 32px 80px rgba(0, 0, 0, 0.55);
+  --blur-strong: blur(20px);
+
+  --transition-speed: 0.25s ease;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  min-height:100vh;
+  background:var(--bg-gradient);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:var(--font-main);
+  color:var(--text-main);
+  padding:24px;
+}
+
+.container {
+  max-width:980px;
+  width:100%;
+  background:linear-gradient(180deg,var(--glass-light), rgba(255,255,255,0.05));
+  backdrop-filter: var(--blur-strong);
+  border-radius:var(--radius-xl);
+  padding:32px;
+  box-shadow:var(--shadow-deep);
+  animation:containerFade 0.8s cubic-bezier(0.2,0.8,0.2,1);
+}
+
+h1 { text-align:center; font-size:2.8rem; letter-spacing:1.2px; margin-bottom:32px; }
+
+.search-box { display:flex; gap:16px; margin-bottom:36px; }
+.search-box input {
+  flex:1; padding:16px 22px; border-radius:var(--radius-lg); border:none;
+  outline:none; font-size:1rem; background: rgba(255,255,255,0.15); color:#fff;
+  transition:box-shadow var(--transition-speed);
+}
+.search-box input::placeholder { color: var(--text-soft); }
+.search-box input:focus { box-shadow:0 0 0 2px var(--accent-primary); }
+.search-box button {
+  padding:16px 28px; border-radius:var(--radius-lg); border:none;
+  background:linear-gradient(to right,var(--accent-secondary),var(--accent-primary));
+  color:#fff; font-weight:600; cursor:pointer; transition:all var(--transition-speed);
+}
+.search-box button:hover { transform:translateY(-4px) scale(1.03); box-shadow:0 16px 40px rgba(0,198,255,0.45); }
+
+#loader { width:48px; height:48px; border:5px solid rgba(255,255,255,0.2); border-top:5px solid var(--accent-primary); border-radius:50%; animation:spin 1s linear infinite; margin:24px auto; }
+
+#resultSection { background:var(--glass-dark); padding:28px; border-radius:var(--radius-xl); box-shadow:var(--shadow-soft); animation:fadeUp 0.6s ease; position:relative; overflow:hidden; }
+.location { font-size:var(--font-medium); font-weight:600; margin-bottom:12px; }
+
+.weather-main { display:flex; align-items:center; gap:28px; margin:24px 0; }
+.weather-main img { width:100px; height:100px; filter:drop-shadow(0 12px 28px rgba(0,0,0,0.45)); transition:transform var(--transition-speed); }
+.weather-main img:hover { transform:scale(1.05); }
+.temp { font-size:var(--font-large); font-weight:700; }
+.condition { font-size:1.1rem; color:var(--text-muted); }
+
+.weather-details { display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:20px; }
+.detail-box { background: rgba(255,255,255,0.1); padding:20px; border-radius:var(--radius-md); text-align:center; transition:transform var(--transition-speed), background var(--transition-speed), box-shadow var(--transition-speed); }
+.detail-box:hover { transform:translateY(-6px); background: rgba(255,255,255,0.2); box-shadow:0 10px 28px rgba(0,0,0,0.25); }
+
+.history-section { margin-top:44px; }
+.history-section h2 { font-size:var(--font-medium); margin-bottom:16px; }
+table { width:100%; border-collapse:collapse; border-radius:var(--radius-lg); overflow:hidden; box-shadow:0 8px 20px rgba(0,0,0,0.25); }
+thead { background: rgba(0,0,0,0.45); }
+th, td { padding:16px; text-align:center; font-size:var(--font-small); }
+tbody tr { background: rgba(255,255,255,0.08); animation: rowFade 0.4s ease; transition: background var(--transition-speed); }
+tbody tr:hover { background: rgba(255,255,255,0.22); }
+
+@keyframes fadeUp { from {opacity:0; transform:translateY(20px);} to {opacity:1; transform:translateY(0);} }
+@keyframes rowFade { from {opacity:0; transform:translateY(8px);} to {opacity:1; transform:translateY(0);} }
+@keyframes spin { to {transform:rotate(360deg);} }
+@keyframes containerFade { from {opacity:0; transform:scale(0.96);} to {opacity:1; transform:scale(1);} }
+
+@media (max-width:700px) {
+  h1 { font-size:2.2rem; }
+  .search-box { flex-direction:column; }
+  .weather-main { flex-direction:column; text-align:center; }
+  .temp { font-size:2.8rem; }
+  .detail-box { padding:16px; }
+  th, td { padding:12px; font-size:0.9rem; }
+}
+
+/* ==============================
+   FIXED FLOATING FOOTER
+================================ */
+.footer-fixed {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-soft);
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(10px);
+  padding: 8px 0;
+  z-index: 999;
+  box-shadow: 0 -4px 12px rgba(0,0,0,0.3);
+  transition: background 0.3s ease, opacity 0.3s ease;
+}
+
+.footer-fixed:hover {
+  background: rgba(0,0,0,0.45);
+  opacity: 1;
+}
